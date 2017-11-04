@@ -1,0 +1,58 @@
+.wordcard {
+  display: flex;
+  align-items: center;
+  background: #eee;
+  padding: 1rem;
+  width: 300px;
+  margin: 10px;
+}
+.wordcard:hover{
+  transition: all .3s ease-in;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+.wordcard > .word-title {
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
+  background-color: #fff;
+  margin-right: 10px;
+  font-size: 25px;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 15px 0 0 0
+}
+
+.word-desc {
+  flex: 1;
+}
+
+.word-action {
+  ul {
+    text-align: right;
+    list-style: none;
+    -webkit-padding-start: 0;
+  }
+  li {
+    display: inline;
+    margin: 5px 10px;
+  }
+  li img{
+    width: 25px;
+    height: 25px;
+  }
+}
+.wordcard h3 {
+  font-weight: 400;
+  text-transform: capitalize;
+  margin: 5px 0;
+}
+.wordcard span{
+  text-transform: lowercase;
+  font-size: 14px;
+}
+.wordcard p {
+  font-weight: 500;
+  // text-transform: capitalize;
+  margin: 0;
+}

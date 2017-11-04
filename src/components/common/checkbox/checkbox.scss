@@ -1,0 +1,25 @@
+.checkbox {
+  width: 130px;
+  height: 130px;
+  color: #000;
+  background-color: #eee;
+  text-align: center;
+  padding: 43px 0;
+  font-size:40px;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid #3cc82e;
+  margin: 15px;
+}
+.checkbox-overlay{
+  transition: all .3s ease-in;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #fff;
+  border: 1px solid #3cc82e;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+  padding: 15px;
+}
