@@ -1,6 +1,6 @@
 .wordcard {
   display: flex;
-  align-items: center;
+  // align-items: center;
   background: #eee;
   padding: 1rem;
   width: 300px;
@@ -20,7 +20,14 @@
   font-weight: 900;
   text-transform: uppercase;
   text-align: center;
-  padding: 15px 0 0 0
+  padding: 13px 0 0 0
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.rotate{
+  animation: spin 2s linear infinite;
 }
 
 .word-desc {

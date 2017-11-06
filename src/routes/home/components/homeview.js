@@ -6,6 +6,9 @@ import logo from './logo.png'
 import android from './android.png'
 import Checkbox from '../../../components/common/checkbox/checkbox'
 import Wordcard from '../../../components/common/wordcard/wordcard'
+import {FormGroup, InputGroup, Button, FormControl} from 'react-bootstrap'
+import {asyncContainer,AsyncTypeahead, Typeahead} from 'react-bootstrap-typeahead';
+import {hashHistory } from 'react-router'
 
 const wordLimit = [
   {
@@ -30,6 +33,9 @@ const wordLimit = [
 export class Home extends Component {
   constructor() {
     super()
+    this.state = {
+      options: []
+    };
     this.setQuestionLimitInCookie = this.setQuestionLimitInCookie.bind(this)
     this.fetchRandomWords = this.fetchRandomWords.bind(this)
     this.updateComponent = this.updateComponent.bind(this)
@@ -73,41 +79,76 @@ export class Home extends Component {
     this.fetchRandomWords(this.props.home.home.questionLimit)
   }
 
-  render() {
-    return (<div className="home-view">
-      <div className="box">
-        <span className="overlay">
-          <img src={logo} width="100"/>
-          <h1>Hey you!</h1>
-          <h3>You feel lost?</h3>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</p>
-          <ul>
-            <li>Search words</li>
-            <li>Learn New Words</li>
-            <li>Play Word Quiz</li>
-          </ul>
-          <p>coming soon</p>
-          <img src={android} width="100"/>
-        </span>
+  _renderMenuItemChildren(option, props, index) {
+    return (
+      <div key={option.word}>
+        <span>{option.word}</span>
       </div>
-      {}
-      <div className="box">
-        {!this.props.home.home.isLimitSet &&
-          <div className="onboarding">
-            <h2 >How many words you want to learn daily?</h2>
-            <div className="flex">
-              {wordLimit.map(i => <Checkbox key={i.id} value={i.value} checked={i.value == this.props.home.home.questionLimit} toggle={this.props.setQuestionLimit}/>)}
-            </div>
-            {this.props.home.home.questionLimit && <button className="button button--size-m button--saqui button--inverted button--text-upper button--text-medium button--border-thick button--round-l" onClick={this.setQuestionLimitInCookie} data-text="continue">continue</button>}
-          </div>}
-          {this.props.home.home.randomWords && <div className="word-list">
-            {this.props.home.home.randomWords.map(w => <Wordcard key={w.id} word={w.word}/>)}
-          </div>}
+    );
+  }
 
+  _handleSearch = query => {
+    if (!query) return
+    fetch(`http://api.wordnik.com:80/v4/words.json/search/${query}?caseSensitive=true&minCorpusCount=5&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=1&maxLength=-1&skip=0&limit=10&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5`)
+    .then(resp => resp.json())
+    .then(json => this.setState({options: json.searchResults}));
+  }
+
+  _handleChange = e => {
+    let selectedQuery = e[0].word
+    hashHistory.push(`search?q=${selectedQuery}`)
+  }
+
+  render() {
+    return (
+      <div  className="container-fluid p-l-0 p-r-0">
+        <div className="row margin-0">
+          <div className="col-md-4 col-lg-4 padding-0">
+            <div className="app-intro">
+              <div className="app-intro-content">
+                <AsyncTypeahead className="async-typeahead animate-bottom"
+                  {...this.state}
+                  labelKey="word"
+                  onSearch={this._handleSearch}
+                  onChange={this._handleChange}
+                  placeholder="Search any word..."
+                  renderMenuItemChildren={this._renderMenuItemChildren}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="col-md-8 col-lg-8 padding-0">
+            {!this.props.home.home.isLimitSet && <div className="onboarding-container">
+              <h2 className="text-center">How many words you want to learn daily?</h2>
+              <Onboarding  isLimitSet={!this.props.home.home.isLimitSet} questions={this.props.home.home.questionLimit} setQueLimitFn={this.props.setQuestionLimit}/>
+              <div className={this.props.home.home.questionLimit?'visible' : 'invisible'}>
+                <button className="button button--size-s button--saqui button--inverted button--text-upper button--text-medium button--border-thick button--round-l" onClick={this.setQuestionLimitInCookie} data-text="continue">continue</button>
+              </div>
+            </div>}
+            {this.props.home.home.randomWords && <div className="random-word-container">
+                <h3>Let's learn, {this.props.home.home.questionLimit} random words</h3>
+                <Wordlist words={this.props.home.home.randomWords}/>
+            </div>}
+          </div>
+        </div>
       </div>
-    </div>)
+      )
   }
 }
+
+const Onboarding = (props) => (
+  <div className="onboarding animate-bottom">
+    {wordLimit.map(i => <Checkbox key={i.id} value={i.value} checked={i.value == props.questions} toggle={props.setQueLimitFn}/>)}
+  </div>
+)
+
+const Wordlist = (props) => (
+  <div className="random-words animate-bottom">
+    {props.words.map(w =>
+      <Wordcard key={w.id} word={w.word} />
+    )}
+  </div>
+)
 
 Home.propTypes = {
   home: PropTypes.object,

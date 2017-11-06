@@ -1,0 +1,61 @@
+.search .form-control{
+  width: 250px;
+  margin:50px auto;
+  border-radius: 50px;
+  background: #ee0979;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #ff6a00, #ee0979);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #ff6a00, #ee0979); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  border: 0;
+  color: #fff;
+  height: 60px;
+  font-size: 25px;
+  padding: 10px 30px;
+}
+input::placeholder{
+  color: #fff;
+}
+
+.search-bar{
+  background-color: #ccc;
+  background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1309&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D%201309w');
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+
+.flex {
+  -webkit-display: -webkit-box;
+  -webkit-display: -webkit-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.search-result{
+  @extend .flex;
+  align-items: stretch;
+  justify-content: center;
+  flex-flow: row;
+  flex-wrap: wrap;
+  padding: 30px 20px;
+  min-height: 200px;
+}
+
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 }
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom {
+  from{ bottom:-100px; opacity:0 }
+  to{ bottom:0; opacity:1 }
+}

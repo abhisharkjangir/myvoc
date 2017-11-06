@@ -2,38 +2,47 @@ import React,{ Component  } from 'react'
 import './wordcard.scss'
 import Google from './search.png'
 import Save from './tack-save-button.png'
+import Saved from './saved.png'
+
+const MONGOFIND_BY_ID = (arr, id) => {
+  return arr.filter(function(x) {
+    return x.id == id;
+  }).shift();
+}
 
 class Wordcard extends Component {
   constructor() {
     super()
     this.state = {
       definition : {},
-      hindiDefinitoin : '',
-      hindiMeaning :''
+      hindiDefinition : '',
+      hindiMeaning :'',
+      isSaved : false,
+      isLoading : false
     }
     this.fetchWordDefination = this.fetchWordDefination.bind(this)
     this.gTranslator = this.gTranslator.bind(this)
-    this.hindiMeaningTranslator = this.hindiMeaningTranslator.bind(this)
+    this.saveWord = this.saveWord.bind(this)
+    this.isWordSaved = this.isWordSaved.bind(this)
+    this.removeWordFromSaved = this.removeWordFromSaved.bind(this)
   }
 
   componentWillMount(){
+    this.isWordSaved()
     this.fetchWordDefination()
   }
 
-  gTranslator(str){
-    fetch(`https://imabhi.herokuapp.com/translator?pharse=${str}`).then((response) => {
-      response.json().then(def => {
-        this.setState({hindiDefinitoin : def.data})
-      })
-    }).catch(error => {
-      throw(error);
-    })
+  isWordSaved(){
+    if(localStorage.getItem("savedWords")){
+      let savedWords = JSON.parse(localStorage.getItem("savedWords"))
+      if(MONGOFIND_BY_ID(savedWords,this.props.word)){this.setState({isSaved : true})}
+    }
   }
 
-  hindiMeaningTranslator(str){
-    fetch(`https://imabhi.herokuapp.com/translator?pharse=${str}`).then((response) => {
-      response.json().then(def => {
-        this.setState({hindiMeaning : def.data})
+  gTranslator(engWord, engDef){
+    fetch(`https://imabhi.herokuapp.com/translator?pharse=${engWord}&def=${engDef}`).then((response) => {
+      response.json().then(res => {
+        this.setState({hindiDefinition : res.data.def,hindiMeaning : res.data.word,isLoading : false})
       })
     }).catch(error => {
       throw(error);
@@ -41,33 +50,68 @@ class Wordcard extends Component {
   }
 
   fetchWordDefination(){
+    this.setState({isLoading : true})
     fetch(`http://api.wordnik.com:80/v4/word.json/${this.props.word}/definitions?limit=200&includeRelated=true&sourceDictionaries=wiktionary&useCanonical=true&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5`, {mode: 'cors'}).then((response) => {
       response.json().then(def => {
         if(def.length > 0){
           this.setState({definition : def[0]})
-          this.gTranslator(def[0].text)
-          this.hindiMeaningTranslator(this.props.word)
-        }else this.setState({definition : {}})
+          this.gTranslator(this.props.word,def[0].text || this.props.word)
+        }else {this.setState({definition : {}})
+        this.gTranslator(this.props.word, this.props.word)}
       })
     }).catch(error => {
       throw(error);
     })
   }
 
+  saveWord(){
+    let word = {
+      id : this.props.word,
+      engWord : this.props.word,
+      engDef : this.state.definition.text,
+      hindiMeaning : this.state.hindiMeaning,
+      hindiDef : this.state.hindiDefinition
+    }
+    if(!localStorage.getItem("savedWords")) localStorage.setItem("savedWords",JSON.stringify([]))
+    let savedWords = JSON.parse(localStorage.getItem("savedWords"))
+    if(MONGOFIND_BY_ID(savedWords,this.props.word)) {
+      alert('Already saved!')
+      return
+    }else {
+      savedWords.unshift(word)
+      localStorage.setItem("savedWords",JSON.stringify(savedWords))
+      this.setState({isSaved : true})
+    }
+  }
+
+removeWordFromSaved(){
+  let word = this.props.word
+  let savedWords = JSON.parse(localStorage.getItem("savedWords"))
+  let wordIndex = savedWords.findIndex(function(w){
+     return w.id == word;
+   })
+   if (wordIndex === -1) {
+     alert("Word doesn't exist!")
+     return
+   }
+   savedWords.splice(wordIndex, 1);
+   localStorage.setItem("savedWords",JSON.stringify(savedWords))
+   this.setState({isSaved : false})
+}
 
   render(){
     return (
       <div className="wordcard">
-        <div className="word-title">{this.props.word.charAt(0)}</div>
+        <div className={this.state.isLoading ? ' word-title rotate' :'word-title'}>{this.props.word.charAt(0)}</div>
         <div className="word-desc">
           <h3>{this.props.word} {this.state.definition.partOfSpeech && <span>({this.state.definition.partOfSpeech})</span>}</h3>
           <h3>{this.state.hindiMeaning}</h3>
           <p>{this.state.definition.text}</p>
-          <p>{this.state.hindiDefinitoin}</p>
+          <p>{this.state.hindiDefinition}</p>
           <div className="word-action">
             <ul>
-              <li><img  src={Save}/></li>
-              <li><a href={`https://www.google.co.in/search?q=${this.props.word}&gws_rd=cr&dcr=0&ei=uYf9WYy3CszOvgTq0JHYBg`} target="_blank"><img  src={Google}/></a></li>
+              <li><img src={this.state.isSaved ? Saved : Save} onClick={this.state.isSaved ? this.removeWordFromSaved :this.saveWord}/></li>
+              <li><a href={`https://www.google.co.in/search?q=${this.props.word + " meaning in hindi"}&gws_rd=cr&dcr=0&ei=uYf9WYy3CszOvgTq0JHYBg`} target="_blank"><img  src={Google}/></a></li>
             </ul>
           </div>
         </div>

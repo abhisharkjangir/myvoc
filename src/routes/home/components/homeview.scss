@@ -15,59 +15,135 @@
   z-index:999;
 }
 
-.home-view {
+.app-intro{
   @extend .flex;
+  background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1309&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D%201309w');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 93vh;
+}
+
+.app-intro-content{
+  @extend .flex;
+  flex-flow: column;
+  padding: 15px;
+  color: #fff;
   width: 100%;
-  height: 100vh;
-  align-items: stretch;
-  justify-content: left;
-  .box {
-    @extend .flex;
-    background-color: #4d4d4d;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    color: #fff;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-intro-content .form-control{
+  width: 250px;
+  border-radius: 0;
+  background: #ee0979;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #ff6a00, #ee0979);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #ff6a00, #ee0979); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  border: 0;
+  color: #fff;
+  height: 40px;
+  padding: 10px 12px;
+}
+.app-intro-content .dropdown-menu{
+  width: 100%;
+  border-radius: 0;
+  padding: 0;
+  margin-top: 0;
+  background-color: rgba(255, 255, 255, 0.76);
+  height: 200px;
+}
+
+.app-intro-content .dropdown-menu>li>a {
+  display: block;
+  padding: 6px;
+  border-bottom: 1px solid #bbb6b6;
+  clear: both;
+  font-weight: 400;
+  line-height: 1.428571;
+  color: #000;
+  white-space: nowrap;
+  text-transform: capitalize;
+}
+
+.onboarding-container{
+  @extend .flex;
+  background-color: #eee;
+  height: 93vh;
+  flex-wrap: wrap;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+.onboarding{
+  @extend .flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .onboarding-container{
+    height: auto;
+    padding: 60px;
   }
-  .box:nth-child(1){
-    width: 40%;
-    justify-content: center;
-    background-color: #4d4d4d;
-    background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1500&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D%201500w');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  .onboarding-container h2{
+    font-size: 25px;
   }
-  .overlay {
-    @extend .flex;
-    padding: 15px;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    @include overlay(#000,0.7);
-  }
-  .box:nth-child(2){
-    width: 60%;
-    background-color: #fff;
-    color: black;
-    .onboarding{
-      @extend .flex;
-      justify-content: center;
-    }
-    .word-list{
-      @extend .flex;
-      justify-content: center;
-      overflow-y: scroll;
-      padding: 100px 15px;
-    }
-  }
-  .flex {
-    @extend .flex;
-    justify-content: center;
-    align-items: center;
+  .onboarding{
+    flex-flow: row;
     flex-wrap: wrap;
   }
+  .app-intro{
+    height: 300px;
+  }
 }
+
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 }
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom {
+  from{ bottom:-100px; opacity:0 }
+  to{ bottom:0; opacity:1 }
+}
+
+.random-word-container{
+  @extend .flex;
+  background-color: #fff;
+  height: 93vh;
+  padding: 30px 15px;
+  overflow-y: scroll;
+  flex-wrap: wrap;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 992px) {
+  .random-word-container{
+    height: auto;
+    overflow-y: auto;
+  }
+}
+
+.random-words{
+  @extend .flex;
+  align-items: stretch;
+  padding: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 
 /* Common button styles */
 .button {

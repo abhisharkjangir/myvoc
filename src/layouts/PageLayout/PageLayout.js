@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import './PageLayout.scss'
 
 export const PageLayout = ({ children }) => (
-  <div>
+  <div style={{paddingTop : '50px'}}>
     {children}
   </div>
 )

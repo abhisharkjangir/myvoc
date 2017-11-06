@@ -1,4 +1,4 @@
-.checkbox {
+.check-box {
   width: 130px;
   height: 130px;
   color: #000;
@@ -11,6 +11,8 @@
   border: 1px solid #3cc82e;
   margin: 15px;
 }
+
+
 .checkbox-overlay{
   transition: all .3s ease-in;
   position: absolute;
@@ -22,4 +24,14 @@
   border: 1px solid #3cc82e;
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
   padding: 15px;
+}
+
+@media (max-width : 500px) {
+  .check-box{
+    width: 100px;
+    height: 100px;
+    padding: 28px;
+    margin: 5px;
+    font-size: 30px
+  }
 }
