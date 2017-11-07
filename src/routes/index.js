@@ -3,6 +3,7 @@ import CoreLayout from '../layouts/PageLayout/PageLayout'
 import Home from './home'
 import Saved from './saved'
 import Search from './search'
+import Setting from './setting'
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -14,7 +15,8 @@ export const createRoutes = (store) => ({
   childRoutes : [
     Home(store),
     Saved(store),
-    Search(store)
+    Search(store),
+    Setting(store)
   ]
 })
 

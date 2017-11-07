@@ -1,62 +1,98 @@
 @import 'base';
-
 // Some best-practice CSS that's useful for most apps
 // Just remove them if they're not what you want
+
 html {
   box-sizing: border-box;
 }
 
-html,
-body {
+body,
+html {
   margin: 0;
   padding: 0;
   height: 100%;
 }
 
 *,
-*:before,
-*:after {
+*:after,
+*:before {
   box-sizing: inherit;
 }
 
-
-.padding-0{
+// Paddings
+.padding-0 {
   padding: 0;
 }
-.p-l-0{
+
+.p-l-0 {
   padding-left: 0;
 }
-.p-r-0{
+
+.p-r-0 {
   padding-right: 0;
 }
-.p-t-0{
+
+.p-t-0 {
   padding-top: 0;
 }
-.p-b-0{
+
+.p-b-0 {
   padding-bottom: 0;
 }
 
-
-.margin-0{
+// Margins
+.margin-0 {
   margin: 0;
 }
-.m-l-0{
+
+.m-l-0 {
   margin-left: 0;
 }
-.m-r-0{
+
+.m-r-0 {
   margin-right: 0;
 }
-.m-t-0{
+
+.m-t-0 {
   margin-top: 0;
 }
-.m-b-0{
+
+.m-b-0 {
   margin-bottom: 0;
 }
 
-
-.invisible{
+// Visibility
+.invisible {
   opacity: 0;
 }
-.visible{
+
+.visible {
   opacity: 1;
+}
+
+// Placeholders
+::-webkit-input-placeholder {
+  color: #fff!important;
+}
+
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #fff!important;
+  opacity: 1;
+}
+
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #fff!important;
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #fff!important;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #fff!important;
 }

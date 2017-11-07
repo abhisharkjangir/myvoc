@@ -3,16 +3,18 @@
   margin:50px auto;
   border-radius: 50px;
   background: #ee0979;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #ff6a00, #ee0979);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #ff6a00, #ee0979); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+  background: -webkit-linear-gradient(90deg,rgba(255, 106, 0, 0.7),rgba(238, 9, 121, 0.7));  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(90deg,rgba(255, 106, 0, 0.7),rgba(238, 9, 121, 0.7)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   border: 0;
   color: #fff;
-  height: 60px;
-  font-size: 25px;
+  height: 40px;
+  font-size: 18px;
   padding: 10px 30px;
 }
 input::placeholder{
+  color: #fff;
+}
+input::-webkit-input-placeholder{
   color: #fff;
 }
 
