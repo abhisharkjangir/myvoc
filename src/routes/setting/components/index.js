@@ -25,7 +25,7 @@ export class Setting extends Component {
         <div className="row">
           <div className="col-md-12 p-r-0 p-l-0">
             <div className="setting-bar">
-              <h2 className="text-center"><FontAwesome name="gear" /> Setting</h2>
+              <h2 className="text-center"><FontAwesome name="gears" /> Setting</h2>
             </div>
           </div>
         </div>
