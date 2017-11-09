@@ -5,6 +5,7 @@ import './search.scss'
 import Wordcard from '../../../components/common/wordcard/wordcard'
 import Loader from '../../../components/common/loader'
 // import Dic from './dictionary.json'
+import FontAwesome  from 'react-fontawesome'
 
 const debounce = (func, delay) => {
   let inDebounce = undefined;
@@ -78,7 +79,12 @@ export class Search extends Component {
       <div className="row">
         <div className="search-result animate-bottom">
           {this.state.isSearching && <Loader />}
-          {!this.state.isSearching && this.state.words.length == 0 && <h3>Let's start exploring</h3> }
+          {!this.state.isSearching && this.state.words.length == 0 &&
+            <div className="text-center">
+              <h3><FontAwesome name="search" size="3x" /></h3>
+              <h4>Let's start exploring</h4>
+            </div>
+          }
           {this.state.words.length > 0 && this.state.words.map(w => <Wordcard key={w.word} word={w.word}/>)}
         </div>
       </div>

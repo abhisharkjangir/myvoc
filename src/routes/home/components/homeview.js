@@ -9,6 +9,7 @@ import Wordcard from '../../../components/common/wordcard/wordcard'
 import {FormGroup, InputGroup, Button, FormControl} from 'react-bootstrap'
 import {asyncContainer,AsyncTypeahead, Typeahead} from 'react-bootstrap-typeahead';
 import {hashHistory } from 'react-router'
+import FontAwesome  from 'react-fontawesome'
 
 const wordLimit = [
   {
@@ -50,7 +51,6 @@ export class Home extends Component {
     if (ql) {
       this.props.setLimitStatus()
       let randomWords = JSON.parse(localStorage.getItem("randomWords"))
-      console.log(randomWords.date);
       if (randomWords && randomWords.list && randomWords.date && Moment(new Date()).format("DDMMYYYY") == Moment(randomWords.date).format("DDMMYYYY")) {
         this.props.fetchAndSaveRandomWords({list : randomWords.list, date : randomWords.date})
         this.props.setQuestionLimit(ql)
@@ -106,8 +106,10 @@ export class Home extends Component {
         <div className="row margin-0">
           <div className="col-md-4 col-lg-4 padding-0">
             <div className="app-intro">
-              <div className="app-intro-content">
-                <AsyncTypeahead className="async-typeahead animate-bottom"
+              <div className="app-intro-content  animate-bottom">
+                <h2>Word Book</h2>
+                <p>learn & save new words daily.</p>
+                <AsyncTypeahead className="async-typeahead"
                   {...this.state}
                   labelKey="word"
                   onSearch={this._handleSearch}
@@ -115,6 +117,8 @@ export class Home extends Component {
                   placeholder="Search any word..."
                   renderMenuItemChildren={this._renderMenuItemChildren}
                 />
+                <h5>coming soon on</h5>
+                <p><FontAwesome name="android" size="3x"/></p>
               </div>
             </div>
           </div>

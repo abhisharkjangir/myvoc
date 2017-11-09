@@ -20,7 +20,7 @@ class Header extends Component{
         <Navbar fluid collapseOnSelect fixedTop className={this.props.hclass}>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="#/"><img src={logo} width="75"/></a>
+              <a href="#/"><img src={logo} width="85"/></a>
             </Navbar.Brand>
             <Navbar.Toggle/>
           </Navbar.Header>
@@ -29,7 +29,7 @@ class Header extends Component{
               <NavItem eventKey={1} onClick={() => this.goToUrl('random')}><FontAwesome name='random'/> Random</NavItem>
               <NavItem eventKey={2} onClick={() => this.goToUrl('search')}><FontAwesome name='search'/> Search</NavItem>
               <NavItem eventKey={3} onClick={() => this.goToUrl('saved')}><FontAwesome name='book'/> Word Book</NavItem>
-              {/* <NavItem eventKey={4} onClick={() => this.goToUrl('setting')} ><FontAwesome name='gears'/> Settings</NavItem> */}
+              <NavItem eventKey={4} onClick={() => this.goToUrl('setting')} ><FontAwesome name='gears'/> Settings</NavItem>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

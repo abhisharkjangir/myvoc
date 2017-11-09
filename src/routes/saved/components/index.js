@@ -6,21 +6,28 @@ import {Media} from 'react-bootstrap'
 import Google from './search.png'
 import pin from './tack-save-button.png'
 import pinned from './saved.png'
-
+import FontAwesome  from 'react-fontawesome'
+import Confirmation from '../../../components/common/confirmation/confirmation'
 
 export class Saved extends Component {
   constructor() {
     super()
     this.state = {
-      savedWords: []
+      savedWords: [],
+      modalOpen : false
     }
     this.removeWordFromSaved = this.removeWordFromSaved.bind(this)
+    this.openConfirmation = this.openConfirmation.bind(this)
+    this.closeConfirmation = this.closeConfirmation.bind(this)
+    this.clearWords = this.clearWords.bind(this)
   }
 
   componentWillMount() {
-    let sw = JSON.parse(localStorage.getItem('savedWords'))
-    if (sw) {
-      this.setState({savedWords: sw})
+    if(localStorage.getItem('savedWords')){
+      let sw = JSON.parse(localStorage.getItem('savedWords'))
+      if (sw) {
+        this.setState({savedWords: sw})
+      }
     }
   }
 
@@ -38,16 +45,53 @@ export class Saved extends Component {
      this.setState({"savedWords" : savedWords})
   }
 
+  openConfirmation(){
+    this.setState({modalOpen : true})
+  }
+
+  closeConfirmation(){
+    this.setState({modalOpen : false})
+  }
+
+  clearWords(){
+    localStorage.setItem('savedWords',[])
+    this.setState({modalOpen : false,savedWords : []})
+  }
+
   render() {
     return (<div>
       <div className="container-fluid">
         <div className="row">
-          {this.state.savedWords.length == 0 && <h3 className="text-center">No word saved yet</h3>}
-          {this.state.savedWords.length > 0 && <h3 className="text-center">Saved Words ({this.state.savedWords.length})</h3>}
+          <div className="wordbook-header">
+            <h2 className="text-center"><FontAwesome name="book"/> Word Book</h2>
+          </div>
+          {this.state.savedWords.length > 0 && <div className="wordbook-subheader">
+            <span>Total Words : {this.state.savedWords.length}</span>
+            <span onClick={this.openConfirmation}><FontAwesome name="trash"/>Delete All</span>
+            <Confirmation
+              open={this.state.modalOpen}
+              close={this.closeConfirmation}
+              yes={this.clearWords}
+              no={this.closeConfirmation}
+              title="Delete Confirmation"
+              body="Do you want to clear all words?"
+              yesBtnLabel="Yes"
+              noBtnLabel="No"
+            />
+          </div>}
         </div>
         <div className="row">
-          <div className="saved animate-bottom">
-            {this.state.savedWords.length > 0 && this.state.savedWords.map(w => <Savedcard word={w} key={w.id} removeWordFn={this.removeWordFromSaved}/>)}
+          <div className="wordbook-body animate-bottom">
+            {this.state.savedWords.length == 0 &&
+              <div>
+                <h3 className="text-center"><FontAwesome name="book" size="3x"/></h3>
+                <h4 className="text-center">Your word book is empty!</h4>
+                <h4 className="text-center">Start exploring!</h4>
+              </div>
+            }
+            <div className="saved animate-bottom">
+              {this.state.savedWords.length > 0 && this.state.savedWords.map(w => <Savedcard word={w} key={w.id} removeWordFn={this.removeWordFromSaved}/>)}
+            </div>
           </div>
         </div>
       </div>

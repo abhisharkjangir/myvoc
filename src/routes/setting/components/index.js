@@ -17,7 +17,6 @@ export class Setting extends Component {
 
   }
 
-
   render() {
     return (
     <div className="container-fluid">
@@ -31,19 +30,10 @@ export class Setting extends Component {
         </div>
         <div className="row">
           <div className="col-md-12 p-r-0 p-l-0">
-            <div className="setting-body">
-              <div className="setting-card">
-                <div className="setting-card-header">
-                  <FontAwesome name="book" /> Word Book
-                </div>
-                <div className="setting-card-body">
-                  Do you want to clear your word book?
-                </div>
-                <div className="setting-card-footer">
-                  <span><FontAwesome name="trash" /> clear</span>
-                </div>
-              </div>
-              <div className="setting-card">
+            <div className="setting-body animate-bottom  text-center">
+              <h3><FontAwesome name="clock-o" size="3x" /></h3>
+              <h4>coming soon...</h4>
+              {/* <div className="setting-card">
                 <div className="setting-card-header">
                   <FontAwesome name="book" /> Word Limit
                 </div>
@@ -53,8 +43,8 @@ export class Setting extends Component {
                 <div className="setting-card-footer">
                   <span><FontAwesome name="thumbs-up" /> Yes</span>
                 </div>
-              </div>
-              <div className="setting-card">
+              </div> */}
+              {/* <div className="setting-card">
                 <div className="setting-card-header">
                   <FontAwesome name="book" /> Reset App
                 </div>
@@ -64,7 +54,7 @@ export class Setting extends Component {
                 <div className="setting-card-footer">
                   <span><FontAwesome name="thumbs-up" /> Yes</span>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
