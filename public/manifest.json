@@ -1,9 +1,9 @@
 {
   "short_name": "WordBook",
-  "name": "My First Progressive Web App",
+  "name": "A dictionary app",
   "icons": [
     {
-      "src":"https://cdn-images-1.medium.com/max/800/1*W9RHL8akNvH-FUGwQgCUNw.png",
+      "src":"",
       "sizes": "192x192",
       "type": "image/png"
     }

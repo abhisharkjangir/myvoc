@@ -51,7 +51,7 @@ class Wordcard extends Component {
 
   fetchWordDefination(){
     this.setState({isLoading : true})
-    fetch(`http://api.wordnik.com:80/v4/word.json/${this.props.word}/definitions?limit=200&includeRelated=true&sourceDictionaries=wiktionary&useCanonical=true&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5`, {mode: 'cors'}).then((response) => {
+    fetch(`http://api.wordnik.com:80/v4/word.json/${this.props.word}/definitions?limit=200&includeRelated=true&sourceDictionaries=wiktionary&useCanonical=true&includeTags=false&api_key=8e374b170c872d41579010bbfcc05e4eaa89810a052641153`, {mode: 'cors'}).then((response) => {
       response.json().then(def => {
         if(def.length > 0){
           this.setState({definition : def[0]})

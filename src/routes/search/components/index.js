@@ -50,7 +50,7 @@ export class Search extends Component {
     this.props.location.query = {q : this.state.q}
     let fake = this
     fake.setState({isSearching : true,words : []})
-    fetch(`http://api.wordnik.com:80/v4/words.json/search/${fake.state.q}?caseSensitive=true&minCorpusCount=5&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=1&maxLength=-1&skip=0&limit=10&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5`)
+    fetch(`http://api.wordnik.com:80/v4/words.json/search/${fake.state.q}?caseSensitive=false&api_key=8e374b170c872d41579010bbfcc05e4eaa89810a052641153`)
     .then(resp => resp.json())
     .then(json =>this.setState({words: json.searchResults,isSearching : false}))
   }

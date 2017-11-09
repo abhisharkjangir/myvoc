@@ -50,8 +50,9 @@ export class Home extends Component {
     if (ql) {
       this.props.setLimitStatus()
       let randomWords = JSON.parse(localStorage.getItem("randomWords"))
-      if (randomWords && Moment(new Date()).format("DDMMYYYY") == Moment(randomWords.date).format("DDMMYYYY")) {
-        this.props.fetchAndSaveRandomWords(randomWords)
+      console.log(randomWords.date);
+      if (randomWords && randomWords.list && randomWords.date && Moment(new Date()).format("DDMMYYYY") == Moment(randomWords.date).format("DDMMYYYY")) {
+        this.props.fetchAndSaveRandomWords({list : randomWords.list, date : randomWords.date})
         this.props.setQuestionLimit(ql)
       } else {
         this.fetchRandomWords(ql)
@@ -61,11 +62,11 @@ export class Home extends Component {
 
   // Fetch Ramdom Words From 'API'
   fetchRandomWords(ql) {
-    return fetch(`http://api.wordnik.com:80/v4/words.json/randomWords?hasDictionaryDef=false&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&limit=${ql}&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5`, {mode: 'cors'}).then((response) => {
+    return fetch(`http://api.wordnik.com:80/v4/words.json/randomWords?hasDictionaryDef=true&limit=${ql}&api_key=8e374b170c872d41579010bbfcc05e4eaa89810a052641153`, {mode: 'cors'}).then((response) => {
       response.json().then(words => {
-        words.date = new Date()
-        this.props.fetchAndSaveRandomWords(words)
-        localStorage.setItem("randomWords",JSON.stringify(words))
+        let date = new Date()
+        this.props.fetchAndSaveRandomWords({list : words, date : date })
+        localStorage.setItem("randomWords",JSON.stringify({list : words,date : date}))
       })
     }).catch(error => {
       throw(error);
@@ -89,7 +90,7 @@ export class Home extends Component {
 
   _handleSearch = query => {
     if (!query) return
-    fetch(`http://api.wordnik.com:80/v4/words.json/search/${query}?caseSensitive=true&minCorpusCount=5&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=1&maxLength=-1&skip=0&limit=10&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5`)
+    fetch(`http://api.wordnik.com:80/v4/words.json/search/${query}?caseSensitive=false&api_key=8e374b170c872d41579010bbfcc05e4eaa89810a052641153`)
     .then(resp => resp.json())
     .then(json => this.setState({options: json.searchResults}));
   }
@@ -127,7 +128,7 @@ export class Home extends Component {
             </div>}
             {this.props.home.home.randomWords && <div className="random-word-container">
                 <h3>Let's learn, {this.props.home.home.questionLimit} random words</h3>
-                <Wordlist words={this.props.home.home.randomWords}/>
+                <Wordlist words={this.props.home.home.randomWords.list}/>
             </div>}
           </div>
         </div>
