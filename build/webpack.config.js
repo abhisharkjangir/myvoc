@@ -1,8 +1,8 @@
-const path = require('path')
-const webpack = require('webpack')
+const path = require('path') // Node Js Native 'Plugin'
+const webpack = require('webpack') // Webpack
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const project = require('../project.config')
+const project = require('../project.config') // OUR PROJECT CONFIGRATION
 
 const inProject = path.resolve.bind(path, project.basePath)
 const inProjectSrc = (file) => inProject(project.srcDir, file)
@@ -97,7 +97,7 @@ const extractStyles = new ExtractTextPlugin({
 })
 
 config.module.rules.push({
-  test: /\.(sass|scss)$/,
+  test: /\.(sass|scss|css)$/,
   loader: extractStyles.extract({
     fallback: 'style-loader',
     use: [
@@ -119,8 +119,8 @@ config.module.rules.push({
             reduceIdents: false,
             safe: true,
             sourcemap: project.sourcemaps,
-          },
-        },
+          }
+        }
       },
       {
         loader: 'sass-loader',

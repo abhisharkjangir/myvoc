@@ -30,6 +30,7 @@ class Header extends Component{
               <NavItem eventKey={2} onClick={() => this.goToUrl('search')}><FontAwesome name='search'/> Search</NavItem>
               <NavItem eventKey={3} onClick={() => this.goToUrl('saved')}><FontAwesome name='book'/> Word Book</NavItem>
               <NavItem eventKey={4} onClick={() => this.goToUrl('setting')} ><FontAwesome name='gears'/> Settings</NavItem>
+              <NavItem eventKey={4} onClick={() => this.goToUrl('quiz')} ><FontAwesome name='question-circle'/> Word Quiz</NavItem>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

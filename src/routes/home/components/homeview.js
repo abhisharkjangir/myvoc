@@ -124,10 +124,10 @@ export class Home extends Component {
           </div>
           <div className="col-md-8 col-lg-8 padding-0">
             {!this.props.home.home.isLimitSet && <div className="onboarding-container">
-              <h2 className="text-center">How many words you want to learn daily?</h2>
+              <h2 className="text-center">Choose daily word limit</h2>
               <Onboarding  isLimitSet={!this.props.home.home.isLimitSet} questions={this.props.home.home.questionLimit} setQueLimitFn={this.props.setQuestionLimit}/>
               <div className={this.props.home.home.questionLimit?'visible' : 'invisible'}>
-                <button className="button button--size-s button--saqui button--inverted button--text-upper button--text-medium button--border-thick button--round-l" onClick={this.setQuestionLimitInCookie} data-text="continue">continue</button>
+                <button className="button button--size-s button--saqui button--inverted button--text-upper button--text-small button--round-s" onClick={this.setQuestionLimitInCookie} data-text="continue">continue <i className="fa fa-long-arrow-right" ></i></button>
               </div>
             </div>}
             {this.props.home.home.randomWords && <div className="random-word-container">

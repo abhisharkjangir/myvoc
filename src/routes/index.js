@@ -4,6 +4,7 @@ import Home from './home'
 import Saved from './saved'
 import Search from './search'
 import Setting from './setting'
+import Quiz from './quiz'
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -16,7 +17,8 @@ export const createRoutes = (store) => ({
     Home(store),
     Saved(store),
     Search(store),
-    Setting(store)
+    Setting(store),
+    Quiz(store)
   ]
 })
 

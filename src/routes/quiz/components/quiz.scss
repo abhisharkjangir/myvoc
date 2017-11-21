@@ -1,0 +1,98 @@
+.flex {
+
+  -webkit-display: -webkit-box;
+  -webkit-display: -webkit-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.quiz{
+  @extend .flex;
+  background-color: #eee;
+  height: 93vh;
+  align-items: center;
+}
+.quiz-intro{
+  max-width: 768px;
+  @extend .flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  text-align: center;
+  padding: 50px 0;
+}
+
+.quiz-test{
+  @extend .flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  text-align: center;
+  padding: 50px 0;
+
+}
+
+
+
+.quiz-res-container{
+	margin-top: 50px;
+}
+
+.quiz-res {
+	margin: 0 auto;
+	position: relative;
+	z-index: 1000;
+	width: 280px;
+	height: 280px;
+	padding: 0;
+	list-style: none;
+  // pointer-events: none;
+}
+
+.quiz-res__item {
+	background: #eee;
+	height: 100%;
+	width: 100%;
+	background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1309&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D%201309w');
+	background-position: right;
+  background-size: cover;
+  background-repeat: no-repeat;
+	// box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+	border-radius: 5px;
+	text-align: center;
+	overflow: hidden;
+	position: absolute;
+	opacity: 1!important;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+	// -webkit-touch-callout: none;
+	// -webkit-user-select: none;
+	// -khtml-user-select: none;
+	// -moz-user-select: none;
+	// -ms-user-select: none;
+	// user-select: none;
+	// pointer-events: auto;
+	// padding: 15px;
+}
+
+.quiz-res__item div{
+	padding: 15px;
+	width: 100%;
+	display: block;
+	height:  100%;
+	color: #fff;
+	// pointer-events: none;
+	font-size: 30px;
+  font-weight: 100;
+	display: flex;
+  justify-content: center;
+  align-items: center;
+	letter-spacing: 5px;
+	flex-wrap: wrap;
+  flex-flow: column;
+}
