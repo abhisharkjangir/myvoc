@@ -44,7 +44,6 @@ class Cardstack extends Component {
     fakestate.currentwordindex++
     this.setState({count : fakestate.count,currentwordindex :  fakestate.currentwordindex, nolist : fakestate.nolist})
     fakestate.stack.reject()
-    console.log(this.state);
   }
 
   Accept() {
@@ -54,8 +53,6 @@ class Cardstack extends Component {
     fakestate.currentwordindex++
     this.setState({count : fakestate.count,currentwordindex :  fakestate.currentwordindex, yeslist : fakestate.yeslist})
     fakestate.stack.accept()
-    console.log(this.state);
-
   }
 
   render() {
