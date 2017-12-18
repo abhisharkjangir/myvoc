@@ -52,10 +52,10 @@ export class Quiz extends Component {
 
   fetchQuizWords(){
     this.setState({isLoading : true})
-    fetch(`http://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&limit=5&api_key=8e374b170c872d41579010bbfcc05e4eaa89810a052641153`)
+    fetch(`https://imabhi.herokuapp.com/randomwords/10`)
     .then(res => res.json())
     .then(r => {
-      let coloredWords = r.map(w => {
+      let coloredWords = r.data.map(w => {
         let color1= hex2rgba(randomColorGenerator(),0.7)
         let color2 = hex2rgba(randomColorGenerator(),0.7)
           w.color = `linear-gradient(to right, ${color1}, ${color2})`

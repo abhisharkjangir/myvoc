@@ -1,15 +1,15 @@
 {
   "short_name": "WordBook",
-  "name": "A dictionary app",
+  "name": "Learn & save new words.",
   "icons": [
     {
-      "src":"",
+      "src":"http://imabhi.in/bb6c8d30cdc34041f40aafe5aa55c297.png",
       "sizes": "192x192",
       "type": "image/png"
     }
   ],
   "start_url": "./index.html",
-  "background_color": "#222",
-  "theme_color": "#222",
+  "background_color": "#ff6a00",
+  "theme_color": "#ee0979",
   "display": "standalone"
 }
