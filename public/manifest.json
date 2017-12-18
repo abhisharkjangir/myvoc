@@ -1,15 +1,15 @@
 {
   "short_name": "WordBook",
-  "name": "Learn & save new words.",
+  "name": "Learn & save words",
   "icons": [
     {
       "src":"./wb.png",
-      "sizes": "192x192",
+      "sizes": "100x100",
       "type": "image/png"
     }
   ],
   "start_url": "./index.html",
-  "background_color": "#ff6a00",
+  "background_color": "#fff",
   "theme_color": "#ee0979",
   "display": "standalone"
 }
