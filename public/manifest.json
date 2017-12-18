@@ -3,7 +3,7 @@
   "name": "Learn & save new words.",
   "icons": [
     {
-      "src":"http://imabhi.in/bb6c8d30cdc34041f40aafe5aa55c297.png",
+      "src":"./wb.png",
       "sizes": "192x192",
       "type": "image/png"
     }
