@@ -110,8 +110,8 @@ removeWordFromSaved(){
           <p>{this.state.hindiDefinition}</p>
           <div className="word-action">
             <ul>
-              <li><img src={this.state.isSaved ? Saved : Save} onClick={this.state.isSaved ? this.removeWordFromSaved :this.saveWord}/></li>
-              <li><a href={`https://www.google.co.in/search?q=${this.props.word + " meaning in hindi"}&gws_rd=cr&dcr=0&ei=uYf9WYy3CszOvgTq0JHYBg`} target="_blank"><img  src={Google}/></a></li>
+              <li><i className={this.state.isSaved ? 'fa fa-heart fa-2x cursor' : 'fa fa-heart-o fa-2x cursor'} src={this.state.isSaved ? Saved : Save} onClick={this.state.isSaved ? this.removeWordFromSaved :this.saveWord}></i></li>
+              <li><a href={`https://www.google.co.in/search?q=${this.props.word + " meaning in hindi"}&gws_rd=cr&dcr=0&ei=uYf9WYy3CszOvgTq0JHYBg`} target="_blank"><i className="fa fa-google fa-2x"></i></a></li>
             </ul>
           </div>
         </div>

@@ -117,8 +117,8 @@ const Savedcard = (props) => (
           <p>{props.word.hindiDef}</p>
           <div className="word-action">
             <ul>
-              <li><img src={pinned} onClick={() => props.removeWordFn(props.word.engWord)} /></li>
-              <li><a href={`https://www.google.co.in/search?q=${props.word.engWord}&gws_rd=cr&dcr=0&ei=uYf9WYy3CszOvgTq0JHYBg`} target="_blank"><img  src={Google}/></a></li>
+              <li><i className="fa fa-heart fa-2x cursor" onClick={() => props.removeWordFn(props.word.engWord)} ></i></li>
+              <li><a href={`https://www.google.co.in/search?q=${props.word.engWord}&gws_rd=cr&dcr=0&ei=uYf9WYy3CszOvgTq0JHYBg`} target="_blank"><i className="fa fa-google fa-2x"></i></a></li>
             </ul>
           </div>
         </Media.Body>
